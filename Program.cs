@@ -1,7 +1,7 @@
 ﻿var consoleApp = new ConsoleApp();
 
-consoleApp.Command("", () => Console.WriteLine("Standard"));
-consoleApp.Command("hello", () => Console.WriteLine("Hello"));
-consoleApp.Command("bye", () => Console.WriteLine("Bye"));
+consoleApp.RegisterCommand("", () => Console.WriteLine("Standard"));
+consoleApp.RegisterCommand("hello", () => Console.WriteLine("Hello"));
+consoleApp.RegisterCommand("bye", () => Console.WriteLine("Bye"));
 
-consoleApp.Run();
+consoleApp.Execute(args[0]);
