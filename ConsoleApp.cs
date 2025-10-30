@@ -1,14 +1,24 @@
 class ConsoleApp
 {
-  Dictionary<string, Delegate> subCommands = new();
+  Dictionary<string, Action<string[]>> subCommands = new();
 
-  public void RegisterCommand(string subCommand, Delegate action)
+  public void RegisterCommand(string subCommand, Action<string[]> action)
   {
     subCommands.Add(subCommand, action);
   }
 
-  public void Execute(string arg)
+  public void Execute(string[] args)
   {
-    subCommands[arg].DynamicInvoke();
+    var subcommand = args.FirstOrDefault("");
+    var rest = args.Skip(1).ToArray();
+
+    try
+    {
+      subCommands[subcommand](rest);
+    }
+    catch (System.Exception)
+    {
+      Console.WriteLine("No command found");
+    }
   }
 }
