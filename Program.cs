@@ -15,4 +15,16 @@ consoleApp.RegisterCommand("bye", (args) =>
   Console.WriteLine("Bye");
 });
 
+consoleApp.RegisterCommand("sort", (args) =>
+{
+  var entries = args
+    .Select(arg => int.Parse(arg))
+    .Order();
+
+  foreach (var entry in entries)
+  {
+    Console.WriteLine(entry);
+  }
+});
+
 consoleApp.Execute(args);
